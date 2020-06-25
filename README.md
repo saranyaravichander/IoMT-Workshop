@@ -2,4 +2,4 @@
 
 # Architecture
 
-![alt text]("./images/diagram1.jpg" "Process Flow")
+![alt text](./images/diagram1.jpg "Process Flow")
