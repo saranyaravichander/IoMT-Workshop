@@ -35,22 +35,20 @@ Others
 5. Configure the Wi-Fi on our device and verify that it’s connected to a Wi-Fi network  
 6. Enable-development mode on device
 
-## 2. Run a program on the Sphere device to extract sensor data
+## 2. Run a program on the Sphere device to extract sensor data and push to IoT Central
 
  1. Pull an Azure Sphere project down from GitHub  
- 2. Review the different build options in the project  c. Build and run the project
+ 2. Review the different build options in the project  
+ 3. Build and run the project
+ 4. Create an IoT Central application from a template  
+ 5. Provision our device to the IoT Central application  
+ 6. Configure the example application for the IoT Central configuration
 
-## 3. Set up IoT Central application
-
-1. Create an IoT Central application from a template  
-2. Provision our device to the IoT Central application  
-3. Configure the example application for the IoT Central configuration
-
-## 4. Push data to a FHIR Server
+## 3. Push data to a FHIR Server
 1. Set up IoMT connector to read from IoT Central 
 2. Set up Azure API for FHIR c. Send data to Azure API for FHIR
 
-## 5. Visualize sensor data
+## 4. Visualize sensor data
 
 1. Set up Power App 
 2. Visualize temperature sensor data on Power App
