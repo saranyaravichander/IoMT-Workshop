@@ -5,7 +5,10 @@
 1. Deploy the Azure API for FHIR using the script (Create-AzureApiForFhir.ps1) within the scripts folder
 2. Command to run is ./Create-AzureApiForFhir.ps1 -ResourceName <unique-name-for-Azure-API-for-FHIR- resource> -ResourceGroup <resource-group-name>
 3. Once the command is run successfully, the output will contain details of the deployed API
+            
+            
             Sample output
+            
                 Key   : fhirServerUrl
                 Value : https://<unique-name-for-Azure-API-for-FHIR- resource>.azurehealthcareapis.com
                 Name  : fhirServerUrl
@@ -17,7 +20,7 @@
 
 
                 Key   : accessTokenUrl
-                Value : https://login.microsoftonline.com/<>tenantid/oauth2/v2.0/token
+                Value : https://login.microsoftonline.com/<tenantid>/oauth2/v2.0/token
                 Name  : accessTokenUrl
 
 
@@ -45,6 +48,8 @@ The steps are the same as in the [Azure API for FHIR documentation](https://docs
 7. To upload mapping templates, click on the newly deployed IoT Connector to go to the IoT Connector page.
 8. Device mapping template transforms device data into a normalized schema. On the IoT Connector page, click on Configure device mapping button to go to the Device mapping page.
 9. On the Device mapping page, add the following script to the JSON editor and click Save.
+
+
             {
             "templateType": "CollectionContent",
             "template": [
@@ -65,8 +70,11 @@ The steps are the same as in the [Azure API for FHIR documentation](https://docs
                 }
             ]
         }
+        
 10. FHIR mapping template transforms a normalized message to a FHIR-based Observation resource. On the IoT Connector page, click on Configure FHIR mapping button to go to the FHIR mapping page.
 11. On the FHIR mapping page, add the following script to the JSON editor and click Save.
+
+
                 {
             "templateType": "CollectionFhir",
             "template": [
