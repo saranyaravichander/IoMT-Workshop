@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
+/.vs/ProjectSettings.json
+/.vs/HLS-IoMT-Workshop/v16
+/.vs/HLS-IoMT-Workshop/config
+/Lab3 - IoMT FHIR Connector/.vs/VSWorkspaceState.json
+/Lab3 - IoMT FHIR Connector/.vs/slnx.sqlite
+/Lab3 - IoMT FHIR Connector/.vs/ProjectSettings.json
+/Lab3 - IoMT FHIR Connector/.vs/HLS-IoMT-Workshop/v16/.suo
+/Lab3 - IoMT FHIR Connector/.vs/HLS-IoMT-Workshop/v16

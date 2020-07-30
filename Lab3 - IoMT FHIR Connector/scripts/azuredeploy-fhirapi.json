@@ -1,0 +1,93 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Name of the demo environment. Will be used as prefix for resources."
+      },
+      "maxLength": 20
+    },
+    "aadAuthority": {
+      "type": "string",
+      "defaultValue": "https://login.microsoftonline.com/common",
+      "metadata": {
+        "description": "OAuth Authority for FHIR server"
+      }
+    },
+    "aadFhirServerAudience": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Audience (resource) of the FHIR API app registration"
+      }
+    },
+    "fhirApiLocation": {
+      "type": "string",
+      "allowedValues": [ "eastus", "eastus2", "westus2", "northcentralus", "ukwest", "uksouth", "southeastasia", "australiaeast", "westeurope" ],
+      "defaultValue": "westus2",
+      "metadata": {
+        "description": "Location of Azure API for FHIR"
+      }
+    },
+    "fhirVersion": {
+      "type": "string",
+      "allowedValues": [ "Stu3", "R4" ],
+      "defaultValue": "R4",
+      "metadata": {
+        "description": "FHIR version. Defaults to R4"
+      }
+    },
+    "accessPolicies": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": {
+        "description": "Access policies for Azure API for FHIR PaaS service"
+      }
+    }
+  },
+  "variables": {
+    "cosmosThroughPut": 1000,
+    "environmentName": "[if(empty(parameters('resourceName')), concat('fhirdemo', uniqueString(resourceGroup().id)), parameters('resourceName'))]",
+    "fhirServiceName": "[variables('environmentName')]",
+    "fhirServerUrlSuffix": ".azurehealthcareapis.com",
+    "fhirServiceUrl": "[concat('https://', variables('fhirServiceName'), variables('fhirServerUrlSuffix'))]",
+    "fhirServiceKind": "[concat('fhir-', parameters('fhirVersion'))]",
+    "aadFhirServerAudience": "[if(empty(parameters('aadFhirServerAudience')), variables('fhirServiceUrl'), parameters('aadFhirServerAudience'))]",
+    "allowedOrigins": [
+      "*"
+    ]
+  },
+    "resources": [
+        {
+            "type": "Microsoft.HealthcareApis/services",
+            "kind": "[variables('fhirServiceKind')]",
+            "name": "[variables('fhirServiceName')]",
+            "apiVersion": "2019-09-16",
+            "location": "[parameters('fhirApiLocation')]",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "accessPolicies": "[parameters('accessPolicies')]",
+                "authenticationConfiguration": {
+                    "audience": "[variables('aadFhirServerAudience')]",
+                    "authority": "[parameters('aadAuthority')]",
+                    "smartProxyEnabled": true
+                },
+                "corsConfiguration": {
+                    "origins": ["*"],
+                    "headers": ["*"],
+                    "methods": ["DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT"],
+                    "maxAge": 1440,
+                    "allowCredentials": false
+                },
+                "cosmosDbConfiguration": {
+                    "offerThroughput": "[variables('cosmosThroughPut')]"
+                }
+            }
+        }
+    ]
+}
