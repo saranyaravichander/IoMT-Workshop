@@ -5,6 +5,8 @@
 1. Deploy the Azure API for FHIR using the script (Create-AzureApiForFhir.ps1) within the scripts folder
 2. Command to run is ./Create-AzureApiForFhir.ps1 -ResourceName <unique-name-for-Azure-API-for-FHIR- resource> -ResourceGroup <resource-group-name>
 3. Once the command is run successfully, the output will contain details of the deployed API
+
+
             Sample output
                 Key   : fhirServerUrl
                 Value : https://<unique-name-for-Azure-API-for-FHIR- resource>.azurehealthcareapis.com
