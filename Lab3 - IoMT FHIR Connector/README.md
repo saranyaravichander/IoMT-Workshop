@@ -89,7 +89,7 @@ The steps are the same as in the [Azure API for FHIR documentation](https://docs
                             }
                         ],
                         "periodInterval": 0,
-                        "typeName": "temp",
+                        "typeName": "temperature",
                         "value": {
                             "unit": "degree",
                             "valueName": "temp",
