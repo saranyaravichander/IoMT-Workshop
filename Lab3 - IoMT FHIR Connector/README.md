@@ -50,55 +50,55 @@ The steps are the same as in the [Azure API for FHIR documentation](https://docs
 9. On the Device mapping page, add the following script to the JSON editor and click Save.
 
 
-            {
-            "templateType": "CollectionContent",
-            "template": [
-                {
-                    "templateType": "IotJsonPathContent",
-                    "template": {
-                        "typeName": "temperature",
-                        "typeMatchExpression": "$..[?(@Body.temp)]",
-                        "patientIdExpression": "$.SystemProperties.connectionDeviceId",
-                        "values": [
-                            {
-                                "required": "true",
-                                "valueExpression": "$.Body.temp",
-                                "valueName": "temp"
-                            }
-                        ]
+           {
+    "templateType": "CollectionContent",
+    "template": [
+        {
+            "templateType": "IotJsonPathContent",
+            "template": {
+                "typeName": "temp",
+                "typeMatchExpression": "$..[?(@Body.temp)]",
+                "patientIdExpression": "$.SystemProperties.connectionDeviceId",
+                "values": [
+                    {
+                        "required": "true",
+                        "valueExpression": "$.Body.temp",
+                        "valueName": "temp"
                     }
-                }
-            ]
+                ]
+            }
         }
+    ]
+}
         
 10. FHIR mapping template transforms a normalized message to a FHIR-based Observation resource. On the IoT Connector page, click on Configure FHIR mapping button to go to the FHIR mapping page.
 11. On the FHIR mapping page, add the following script to the JSON editor and click Save.
 
 
-                {
-            "templateType": "CollectionFhir",
-            "template": [
-                {
-                    "templateType": "CodeValueFhir",
-                    "template": {
-                        "codes": [
-                            {
-                                "code": "8867-4",
-                                "system": "http://loinc.org",
-                                "display": "Temperature"
-                            }
-                        ],
-                        "periodInterval": 0,
-                        "typeName": "temperature",
-                        "value": {
-                            "unit": "degree",
-                            "valueName": "temp",
-                            "valueType": "Quantity"
-                        }
+               {
+    "templateType": "CollectionFhir",
+    "template": [
+        {
+            "templateType": "CodeValueFhir",
+            "template": {
+                "codes": [
+                    {
+                        "code": "8867-4",
+                        "system": "http://loinc.org",
+                        "display": "Temperature"
                     }
+                ],
+                "periodInterval": 0,
+                "typeName": "temp",
+                "value": {
+                    "unit": "degree",
+                    "valueName": "temp",
+                    "valueType": "Quantity"
                 }
-            ]
+            }
         }
+    ]
+}
 12. IoMT device needs a connection string to connect and send messages to IoT Connector. On the IoT Connector page for the newly deployed IoT Connector, select Manage client connections button.
 13. Once on Connections page, click on Add button to create a new connection.
 14. Provide a friendly name for this connection on the overlay window and select the Create button.
